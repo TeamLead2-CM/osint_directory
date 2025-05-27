@@ -1,0 +1,165 @@
+body {
+  font-family: PP Neue Montreal, sans-serif;}
+
+
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.858);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  
+  .modal {
+    background: linear-gradient(
+      to top left,
+      rgba(0, 76, 139, 0.568),          /* bottom-right */
+      rgb(0, 0, 0) 50%,         /* fades into black */
+      rgb(0, 0, 0) 30%,         /* stays black in the middle */
+      rgba(0, 76, 139, 0.568)          /* top-left */
+    );
+    
+    padding: 2rem;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 2px 6px rgba(8, 1, 1, 0.336);
+    border: 0px solid #6495ff60;
+  
+    /* Glassmorphism */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(0px);
+  
+    overflow: hidden;
+  }
+  
+.modal h2{
+  background: linear-gradient(135deg, rgb(37, 179, 199), #1d4cc4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; /* For non-webkit browsers (future proofing) */
+  text-fill-color: transparent;
+  font-family: PP Neue Montreal, sans-serif;
+  font-weight: medium;
+  
+}
+  .modal input[type="text"],
+.modal input[type="email"],
+.modal input[type="password"] {
+  all: unset;
+  width: 90%;
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 16px;
+  background: linear-gradient(135deg, #49494a75, #2f2f3169);
+  color: #fff;/* This applies to typed text */
+  border-radius: 5px;
+  text-align: left;
+}
+
+
+
+
+
+.error-text{
+  color:#f8fafce8;
+
+}
+  
+  .btn {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #25b3c7, #00288b); /* Gradient effect */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3), 0 5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 9999px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .btn:hover{
+    background: rgb(255, 255, 255); /* Gradient effect */
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3), 0 5px 10px rgba(0, 0, 0, 0.2); /* Stronger shadow for 3D effect */
+  transform: translateY(-5px) scale(1); /* Move the button up slightly for the 3D effect */
+  color: rgb(0, 0, 0); 
+
+
+  }
+
+
+  .switch-link {
+    color:#256bc7;
+    margin-top: 15px;
+    cursor: pointer;
+    font-size: 15px;
+    font-style: medium;
+    
+  }
+  
+  .blue-text {
+    color: #f8fafce8;
+    text-decoration: none; /* Removes the underline */
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #888888;
+  }
+  
+  .auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  /* Button styles remain the same */
+  .auth-buttons button {
+    font-family: PP Neue Montreal;
+    font-size: 14px;
+    padding: 6px 12px;
+    background: linear-gradient(135deg, #25b3c7, #00288b);
+    color: #e4e4e4;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3), 0 5px 10px rgba(0, 0, 0, 0.2); 
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .auth-buttons button:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Wrapper for username + logout */
+  .auth-user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #0f2861, #000e31);
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5); /* softer glow */
+    padding: 6px 12px;
+    border-radius: 8px;
+  }
+  
+  /* Username text */
+  .user-email {
+    color: #f8fafce8;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  
