@@ -77,7 +77,7 @@ body {
 .nav-buttons {
   display: flex;
   gap: 30px;
-  margin-right: 850px; /* Push it slightly left before auth buttons */
+  margin-right: 650px; /* Push it slightly left before auth buttons */
   object-fit: contain;
   color: #e4e4e4;
 }
@@ -1942,6 +1942,8 @@ body {
   border: 1px solid #000000;
   border-radius: 4px;
   display: block;
+  text-align: center;
+
 }
 
 /* Dropdown list */
@@ -1953,6 +1955,7 @@ body {
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+  margin-left: 10px;
 }
 
 /* Webkit Scrollbar */
@@ -2055,4 +2058,153 @@ body {
   background-color: #ffffff;
   color: rgb(6, 6, 6);
   transform: scale(1.05);
+}
+
+
+.sidebar-title {
+  font-family: 'PP Neue Montreal', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, #25b3c7, #1d4cc4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  text-align: left;
+  margin-left: 10px;
+}
+
+/* Search Input */
+.search-input {
+  width: 90%;
+  padding: 7px 10px;
+  margin: 0 auto 16px auto;
+  display: block;
+  background: linear-gradient(135deg, #47484875, #33343469);
+  color: #fff;
+  border: 1px solid #000;
+  border-radius: 5px;
+  font-family: 'PP Neue Montreal', sans-serif;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* Category Block */
+.category-block {
+
+  margin-bottom: 5px;
+    cursor: pointer;
+}
+
+/* Category Title */
+.category-title {
+  font-family: 'PP Neue Montreal', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 10px;
+   background: linear-gradient(135deg, #25b3c7, #1d4cc4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  text-align: left;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+
+.category-title:hover {
+  color: #fff;
+  background: linear-gradient(135deg, #ffffff, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+
+.keyword-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: calc(100vh - 220px);
+  overflow-y: auto;
+  gap: 0px;
+  cursor: pointer;
+  margin-top: 0px;
+
+  /* Hide scrollbar for Webkit browsers (Chrome, Safari) */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+
+.keyword-list::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+/* Keyword Item */
+.keyword-item {
+  font-family: 'PP Neue Montreal', sans-serif;
+  font-size: 15px;
+  margin: 6px 0;
+  cursor: pointer;
+  background: none;
+  border: none;
+  background:#f8fafcb5;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  font-weight: 500;
+  text-align: left;
+  transition: color 0.2s ease;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
+/* Active Keyword Item */
+.keyword-item.active {
+  background: linear-gradient(135deg, #ffffff, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  font-weight: 600;
+}
+
+/* Keyword Item Hover */
+.keyword-item:hover {
+  color: #fff;
+  background: linear-gradient(135deg, #ffffff, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.sidebar-label{
+ font-family: 'PP Neue Montreal', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, #25b3c7, #1d4cc4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  text-align: center;
+
+}
+
+.sidebar-input{
+  text-align: center;
+  margin-left: 10px;
+  width: 90%;
+  padding: 7px 10px;
+  
+}
+
+.dropdown-container{
+  text-align: center;
 }

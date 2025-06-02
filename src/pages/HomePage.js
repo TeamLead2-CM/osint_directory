@@ -6,7 +6,9 @@ import LoginModal from "../components/LoginModal";
 import SignupModal from "../components/SignupModal";
 import Sidebar from "../components/Sidebar";
 import { FiMenu } from "react-icons/fi";
-import SearchDropdown from "../components/SearchDropdown";  // Import SearchDropdown component
+import SearchDropdown from "../components/SearchDropdown"; 
+import { groupedKeywords } from "../data/groupedKeywords";  // Import SearchDropdown component
+
 
 const HomePage = () => {
   const [tools, setTools] = useState([]);
@@ -169,8 +171,8 @@ const HomePage = () => {
 
       {/* Main Section */}
       <div className="main-content">
-      <Sidebar
-  keywords={allKeywords}
+    <Sidebar
+  groupedKeywords={groupedKeywords}
   onSelect={(kw) => {
     setActiveKeyword(kw);
     setCurrentPage(1);
@@ -179,7 +181,7 @@ const HomePage = () => {
   allInputs={allInputs}
   inputFilter={inputFilter}
   setInputFilter={setInputFilter}
-  sidebarOpen={sidebarOpen}  // Pass sidebarOpen as prop if needed for Sidebar component
+  sidebarOpen={sidebarOpen}
 />
 
         <div ref={toolListRef} className={`tool-list-wrapper ${sidebarOpen ? "with-sidebar" : ""}`}>
