@@ -1,6 +1,8 @@
 // src/pages/OsintFrameworkPage.js
 import React, { useEffect } from "react";
-
+import Header from "../components/Header"; // Import your CSS file
+import "../index.css"; // Import your CSS file
+import Footer from "../components/Footer";
 const OsintFrameworkPage = () => {
   useEffect(() => {
     const d3Script = document.createElement("script");
@@ -33,27 +35,15 @@ const OsintFrameworkPage = () => {
   }, []);
 
   return (
-<div id="body">
-  <div id="header">
-    <div class="header-title">OSINT Framework</div>
-    <div class="legend">
-      <p>
-        (T) - Tool to be installed locally<br />
-        (D) - Google Dork (see  
-        <a href=  "https://en.wikipedia.org/wiki/Google_hacking">
-          Google Hacking
-        </a>)<br />
-        (R) - Requires registration<br />
-        (M) - URL must be manually edited<br />
-      </p>
-    </div>
+    <div><div id="body">
+    <Header/>
+  <div>  
     <hr />
-  </div>
-
-
-
-      
+  </div> 
     </div>
+      <Footer/>
+
+</div>
   );
 };
 
