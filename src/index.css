@@ -695,6 +695,78 @@ body {
   font-size: 14px;
   font-weight: 400
 }
+.demo-carousel-container {
+  position: relative;
+  text-align: center;
+  margin-top: 15px;
+  z-index: 100;
+}
+
+.carousel-image-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.demo-carousel-image {
+  max-width: 80%;
+  height: auto;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+  cursor: zoom-in;
+}
+
+.carousel-arrow {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #333;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.carousel-arrow.left {
+  left: 9px;
+}
+
+.carousel-arrow.right {
+  right: 8px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+}
+
+.expanded-image-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  max-width: 90%;
+  max-height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.expanded-image-content {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
 
 /* Animation for fade-in effect */
 @keyframes fadeIn {
@@ -1722,7 +1794,8 @@ body {
 }
 
 
-.related-tools-section.hidden {
+.related-tools-section.hidden
+ {
   display: none; /* Hidden when demos are shown */
 }
 
@@ -1800,8 +1873,9 @@ body {
 
 .related-tools-list {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 15px;
+  overflow-x: auto; ;
   margin: 0;
   padding: 0;
 }

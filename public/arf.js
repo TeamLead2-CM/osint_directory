@@ -59,7 +59,7 @@ function update(source) {
       .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
 
   nodeEnter.append('a')
-      .attr("target", "_blank")
+      .attr("target", "")
       .attr("xlink:href", function(d) { return d.url; })
     .append("text")
       .attr("x", function(d) { return d.children || d._children ? -10 : 10; })
@@ -144,3 +144,4 @@ function toggle(d) {
     d._children = null;
   }
 }
+

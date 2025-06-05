@@ -7,7 +7,7 @@ import ToolDetails from "./pages/ToolDetails";
 import ImageTest from "./ImageTest";
 import { UserProvider } from "./UserContext"; // ✅ Import UserProvider
 import OsintFrameworkPage from "./pages/OsintFrameworkPage";
-import FrameTools from "./pages/FrameTools" ;
+import FrameTools from "./pages/FrameTools"; // ✅ Import FrameTools
 import "./index.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -22,7 +22,9 @@ root.render(
           <Route path="/tool/:id" element={<ToolDetails />} />
           <Route path="/test-image" element={<ImageTest />} />
           <Route path="/osint-framework" element={<OsintFrameworkPage />} />
-          <Route path="/osintframetools" element={<FrameTools />} />        
+          <Route path="/osintframetools" element={<FrameTools />} /> {/* ✅ No error now */}    
+          <Route path="/osint-framework/tool/:id" element={<ToolDetails />} />
+
           </Routes>
       </Router>
     </UserProvider>

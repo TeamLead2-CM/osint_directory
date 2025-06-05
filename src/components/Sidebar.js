@@ -3,6 +3,7 @@ import SearchDropdown from "./SearchDropdown";
 
 const Sidebar = ({
   groupedKeywords = {},
+  frameKeywords = [],
   onSelect,
   activeKeyword,
   allInputs,

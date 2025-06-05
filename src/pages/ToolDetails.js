@@ -16,9 +16,11 @@ const ToolDetails = () => {
   const [relatedTools, setRelatedTools] = useState([]);
   const { user } = useUser();
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentDemoIndex, setCurrentDemoIndex] = useState(0);
+  
 const cardsPerPage = 2;
 
-const totalPages = Math.ceil(relatedTools.length / cardsPerPage);
+const totalPages = Math.ceil(relatedTools / cardsPerPage);
 
 const handleNext = () => {
   if (currentIndex < totalPages - 1) {
@@ -38,29 +40,53 @@ const visibleTools = relatedTools.slice(
 );
 
 
-  useEffect(() => {
-    const fetchToolDetails = async () => {
-      try {
-        const dbRef = ref(database, `tools/${id}`);
-        const snapshot = await get(dbRef);
-        if (snapshot.exists()) {
-          setTool(snapshot.val());
-        } else {
-          console.error("No tool found.");
-        }
-      } catch (error) {
-        console.error("Error fetching details:", error);
+ useEffect(() => {
+  const fetchToolDetails = async () => {
+    try {
+      // Try Frametools first
+      let dbRef = ref(database, `Frametools/${id}`);
+      let snapshot = await get(dbRef);
+
+      if (snapshot.exists()) {
+        setTool(snapshot.val());
+        return;
       }
-    };
-    fetchToolDetails();
-  }, [id]);
+
+      // If not found, try tools
+      dbRef = ref(database, `tools/${id}`);
+      snapshot = await get(dbRef);
+
+      if (snapshot.exists()) {
+        setTool(snapshot.val());
+      } else {
+        console.error("No tool found in either Frametools or tools.");
+      }
+    } catch (error) {
+      console.error("Error fetching details:", error);
+    }
+  };
+
+  fetchToolDetails();
+}, [id]);
+
+useEffect(() => {
+  if (showDemos) {
+    const interval = setInterval(() => {
+      setCurrentDemoIndex((prev) => (prev === 2 ? 0 : prev + 1));
+    }, 3000); // every 5 sec
+
+    return () => clearInterval(interval);
+  }
+}, [showDemos]);
+
 
   useEffect(() => {
     const fetchRelatedTools = async () => {
       if (!tool || !tool.keywords) return;
       try {
-        const allToolsRef = ref(database, "tools");
-        const snapshot = await get(allToolsRef);
+       let allToolsRef = ref(database, "tools");
+        let snapshot = await get(allToolsRef);
+        console.log(snapshot.val());
         if (snapshot.exists()) {
           const allTools = snapshot.val();
           const related = Object.entries(allTools)
@@ -70,10 +96,32 @@ const visibleTools = relatedTools.slice(
             })
             .slice(0, 4)
             .map(([key, value]) => ({ id: key, ...value }));
-          setRelatedTools(related);
+          if (related.length > 0){ 
+            setRelatedTools(related);
+          return;
+          }
         }
+      
+         allToolsRef = ref(database, "Frametools");
+         snapshot = await get(allToolsRef);
+        console.log(snapshot.exists());
+
+        if (snapshot.exists()) {
+          // If we found related tools in Frametools, merge them with existing related tools
+         const allTools = snapshot.val();
+          const related = Object.entries(allTools)
+            .filter(([key, value]) => {
+              if (key === id) return false;
+              return value.keywords?.some((kw) => tool.keywords.includes(kw));
+            })
+            .slice(0, 4)
+            .map(([key, value]) => ({ id: key, ...value }));
+          setRelatedTools(related);
+          }
+          else{ console.error("No related tools found in Frametools."); }  
       } catch (error) {
         console.error("Error fetching related tools:", error);
+      
       }
     };
     fetchRelatedTools();
@@ -159,42 +207,61 @@ const handleDemoClick = () => {
           )}
 
           {/* ✅ Demo section */}
-          {user && (
-  <div className="demo-container">
-    <div className={`demo-images ${showDemos ? "show" : ""}`}>
-    {[tool.Demo1, tool.Demo2, tool.Demo3].map((demo, index) => {
-  const fallbackURL =
-    "https://raw.githubusercontent.com/TeamLead2-CM/OSINT_Directory_Resources/osint/logo/logo_T_OS_0006.jpg";
+          {user && showDemos && (
+  <div className="demo-carousel-container">
+    <div className="carousel-image-wrapper">
+      <button
+        className="carousel-arrow left"
+        onClick={() =>
+          setCurrentDemoIndex((prev) =>
+            prev === 0 ? 2 : prev - 1
+          )
+        }
+      >
+        &#10094;
+      </button>
 
-  const imageSrc = demo && demo.trim() !== "" ? demo : fallbackURL;
+      <img
+        src={
+          [tool.Demo1, tool.Demo2, tool.Demo3][currentDemoIndex] ||
+          "https://raw.githubusercontent.com/TeamLead2-CM/OSINT_Directory_Resources/osint/logo/logo_T_OS_0006.jpg"
+        }
+        alt={`Demo ${currentDemoIndex + 1}`}
+        className={`demo-carousel-image ${
+          expandedImage ? "expanded" : ""
+        }`}
+        onClick={() =>
+          setExpandedImage(
+            [tool.Demo1, tool.Demo2, tool.Demo3][currentDemoIndex]
+          )
+        }
+        onError={(e) => {
+          e.target.onerror = null;
+          e.target.src =
+            "https://raw.githubusercontent.com/TeamLead2-CM/OSINT_Directory_Resources/osint/logo/logo_T_OS_0006.jpg";
+        }}
+      />
 
-  return (
-    <img
-      key={index}
-      src={imageSrc}
-      alt={`Demo ${index + 1}`}
-      className={`demo-image ${expandedImage === demo ? "expanded" : ""}`}
-      onClick={() => setExpandedImage(imageSrc)}
-      onError={(e) => {
-        e.target.onerror = null;
-        e.target.src = fallbackURL;
-      }}
-    />
-  );
-})}
-
+      <button
+        className="carousel-arrow right"
+        onClick={() =>
+          setCurrentDemoIndex((prev) =>
+            prev === 2 ? 0 : prev + 1
+          )
+        }
+      >
+        &#10095;
+      </button>
     </div>
+
     {tool.Demodescription && (
-      <p className={`demo-description ${showDemos ? "show" : ""}`}>
-        {tool.Demodescription}
-      </p>
+      <p className="demo-description">{tool.Demodescription}</p>
     )}
   </div>
 )}
 
-
           {/* 🔘 Show Related Tools ONLY when demo & login message are NOT visible */}
-          {relatedTools.length > 0 && !user && !showLoginMessage && (
+          {relatedTools.length > 0 && (
   <div className="related-tools-section">
     <h2 className="related-tools-heading">
   <span className="heading-bar">|</span> More like this
@@ -266,8 +333,18 @@ const handleDemoClick = () => {
 
       {/* ✅ Overlay for demo image expansion */}
       {expandedImage && (
-        <div className="overlay" onClick={() => setExpandedImage(null)}></div>
-      )}
+<>
+    <div className="overlay" onClick={() => setExpandedImage(null)}></div>
+    <div className="expanded-image-modal" onClick={() => setExpandedImage(null)}>
+      <img
+        src={expandedImage}
+        alt="Expanded Demo"
+        className="expanded-image-content"
+        onClick={(e) => e.stopPropagation()} // Prevent modal from closing when clicking the image itself
+      />
+    </div>
+  </>
+)}
     </div>
   );
 };

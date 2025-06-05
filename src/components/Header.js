@@ -74,9 +74,9 @@ const Header = ({ search, setSearch }) => {
         {/* Navigation Links */}
         <div className="nav-buttons">
           <Link to="/" className="nav-link">Home</Link>
-          <Link to="/home" className="nav-link">Tools</Link> 
+          <Link to="/osintframetools" className="nav-link">Tools</Link> {/* ✅ Points to OsintFrameTools */}
+          <Link to="/home" className="nav-link">Other Tools</Link>
           <Link to="/osint-framework" className="nav-link">OSINT Tree</Link> {/* ✅ Points to HomePage */}
-          <Link to="/osintframetools" className="nav-link">OSINT Framework Tools</Link> {/* ✅ Points to OsintFrameTools */}
         </div>
 
         {/* Auth Buttons */}

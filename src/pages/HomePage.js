@@ -9,7 +9,6 @@ import { FiMenu } from "react-icons/fi";
 import SearchDropdown from "../components/SearchDropdown"; 
 import { groupedKeywords } from "../data/groupedKeywords";  // Import SearchDropdown component
 
-
 const HomePage = () => {
   const [tools, setTools] = useState([]);
   const [search, setSearch] = useState("");
@@ -127,13 +126,16 @@ const HomePage = () => {
     <div className="homepage-container">
       {/* Header */}
       <div className="header-container">
-    
+      
         <div className="logo">
+          <Link to="/">
           <img
             src="https://raw.githubusercontent.com/TeamLead2-CM/OSINT_Directory_Resources/osint/logo/logo_T_OS_0006.jpg"
             alt="Logo"
+            text="DeepCytes Logo"
             className="logo-image"
           />
+          </Link>
         </div>
         <div className="search-bar-wrapper">
           <input

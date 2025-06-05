@@ -26,7 +26,7 @@ const HeroSection = () => {
       </p>
 
       <div className="blur-glow"></div>
-      <Link to="/home" className="go-to-tools-btn">
+      <Link to="/osintframetools" className="go-to-tools-btn">
   <span className="btn-content">
     Go to Tools
     <FiArrowRight className="arrow-icon" size={16} />
